@@ -1,0 +1,51 @@
+{
+  "datasetName": "Medium Outbreak Educational Dataset",
+  "sourceDescription": "Predefined educational sample data for SimuCrisis demo",
+  "records": [
+    {
+      "regionName": "North District",
+      "population": 8000,
+      "susceptible": 7600,
+      "exposed": 160,
+      "infected": 120,
+      "recovered": 120,
+      "hospitalCapacity": 220
+    },
+    {
+      "regionName": "South District",
+      "population": 10500,
+      "susceptible": 9950,
+      "exposed": 220,
+      "infected": 230,
+      "recovered": 100,
+      "hospitalCapacity": 300
+    },
+    {
+      "regionName": "East District",
+      "population": 12000,
+      "susceptible": 11100,
+      "exposed": 360,
+      "infected": 420,
+      "recovered": 120,
+      "hospitalCapacity": 360
+    },
+    {
+      "regionName": "West District",
+      "population": 9500,
+      "susceptible": 9100,
+      "exposed": 150,
+      "infected": 100,
+      "recovered": 150,
+      "hospitalCapacity": 260
+    },
+    {
+      "regionName": "Central District",
+      "population": 14000,
+      "susceptible": 12800,
+      "exposed": 500,
+      "infected": 520,
+      "recovered": 180,
+      "hospitalCapacity": 450
+    }
+  ]
+}

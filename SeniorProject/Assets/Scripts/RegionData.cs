@@ -31,7 +31,7 @@ public class RegionData
         {
             if (HospitalCapacity <= 0)
             {
-                return 0f;
+                return Infected > 0f ? float.PositiveInfinity : 0f;
             }
 
             return Infected / HospitalCapacity;

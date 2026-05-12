@@ -1,0 +1,51 @@
+{
+  "datasetName": "High Outbreak Educational Dataset",
+  "sourceDescription": "Higher infection sample data for stress-testing interventions",
+  "records": [
+    {
+      "regionName": "North District",
+      "population": 8000,
+      "susceptible": 6700,
+      "exposed": 520,
+      "infected": 620,
+      "recovered": 160,
+      "hospitalCapacity": 220
+    },
+    {
+      "regionName": "South District",
+      "population": 10500,
+      "susceptible": 8500,
+      "exposed": 820,
+      "infected": 950,
+      "recovered": 230,
+      "hospitalCapacity": 300
+    },
+    {
+      "regionName": "East District",
+      "population": 12000,
+      "susceptible": 9400,
+      "exposed": 1050,
+      "infected": 1250,
+      "recovered": 300,
+      "hospitalCapacity": 360
+    },
+    {
+      "regionName": "West District",
+      "population": 9500,
+      "susceptible": 8050,
+      "exposed": 560,
+      "infected": 690,
+      "recovered": 200,
+      "hospitalCapacity": 260
+    },
+    {
+      "regionName": "Central District",
+      "population": 14000,
+      "susceptible": 10600,
+      "exposed": 1350,
+      "infected": 1600,
+      "recovered": 450,
+      "hospitalCapacity": 450
+    }
+  ]
+}
