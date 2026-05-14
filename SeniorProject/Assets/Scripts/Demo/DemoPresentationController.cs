@@ -19,24 +19,45 @@ public class DemoPresentationController : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI outcomeText;
 
-    [Header("Mini-Game State")]
-    public int selectedRegionIndex;
-    public int day;
-    public int budget;
+    [Header("Demo Settings")]
     public int dayLimit = 30;
     public int startingBudget = 1000;
-    public int publicTrust = 100;
-    public bool isDemoFinished;
+    public int startingPublicTrust = 100;
+    public int lockdownCost = 180;
+    public int vaccinationCost = 140;
+    public int hospitalSupportCost = 120;
 
     private readonly string[] startingRegionNames = { "North", "South", "East", "West", "Central" };
     private readonly float[] startingRisks = { 0.35f, 0.45f, 0.55f, 0.30f, 0.70f };
+    private int selectedRegionIndex;
+    private int day;
+    private int budget;
+    private int publicTrust;
+    private bool isDemoFinished;
     private int hospitalInvestmentLevel;
     private string lastActionMessage = "Stabilize all districts before time runs out.";
     private string outcomeMessage = string.Empty;
 
     private void Start()
     {
+        ClampSettings();
         ResetDemo();
+    }
+
+    private void OnValidate()
+    {
+        ClampSettings();
+    }
+
+    [ContextMenu("Apply Default Demo Settings")]
+    private void ApplyDefaultDemoSettings()
+    {
+        dayLimit = 30;
+        startingBudget = 1000;
+        startingPublicTrust = 100;
+        lockdownCost = 180;
+        vaccinationCost = 140;
+        hospitalSupportCost = 120;
     }
 
     public void SelectRegion(int index)
@@ -104,8 +125,7 @@ public class DemoPresentationController : MonoBehaviour
             return;
         }
 
-        const int cost = 180;
-        if (!TrySpendBudget(cost, "Lockdown"))
+        if (!TrySpendBudget(lockdownCost, "Lockdown"))
         {
             return;
         }
@@ -134,8 +154,7 @@ public class DemoPresentationController : MonoBehaviour
             return;
         }
 
-        const int cost = 140;
-        if (!TrySpendBudget(cost, "Vaccination"))
+        if (!TrySpendBudget(vaccinationCost, "Vaccination"))
         {
             return;
         }
@@ -164,8 +183,7 @@ public class DemoPresentationController : MonoBehaviour
             return;
         }
 
-        const int cost = 120;
-        if (!TrySpendBudget(cost, "Hospital support"))
+        if (!TrySpendBudget(hospitalSupportCost, "Hospital support"))
         {
             return;
         }
@@ -179,9 +197,10 @@ public class DemoPresentationController : MonoBehaviour
 
     public void ResetDemo()
     {
+        ClampSettings();
         day = 0;
         budget = startingBudget;
-        publicTrust = 100;
+        publicTrust = startingPublicTrust;
         hospitalInvestmentLevel = 0;
         isDemoFinished = false;
         outcomeMessage = string.Empty;
@@ -203,6 +222,16 @@ public class DemoPresentationController : MonoBehaviour
 
         lastActionMessage = "Medium outbreak scenario loaded. Make all districts green.";
         RefreshUI();
+    }
+
+    private void ClampSettings()
+    {
+        dayLimit = Mathf.Max(1, dayLimit);
+        startingBudget = Mathf.Max(100, startingBudget);
+        startingPublicTrust = Mathf.Clamp(startingPublicTrust, 0, 100);
+        lockdownCost = Mathf.Max(0, lockdownCost);
+        vaccinationCost = Mathf.Max(0, vaccinationCost);
+        hospitalSupportCost = Mathf.Max(0, hospitalSupportCost);
     }
 
     public void RefreshUI()
